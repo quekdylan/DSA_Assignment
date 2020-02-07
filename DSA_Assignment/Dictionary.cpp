@@ -33,10 +33,14 @@ int Dictionary::hash(KeyType key)
 
 	for (char& c : key)
 	{
-		keyValue += charvalue(c);
+		if (isalpha(c))
+		{
+			keyValue += charvalue(c);
+		}
 	}
 
 	return(keyValue % MAX_SIZE);
+
 }
 
 bool Dictionary::add(KeyType newKey, ItemType newItem)
@@ -55,10 +59,7 @@ bool Dictionary::add(KeyType newKey, ItemType newItem)
 	else {
 
 		Node* tempNode = items[hash(newKey)];
-		if (tempNode->key == newKey)
-		{
-			return false;
-		}
+
 
 		while (tempNode->next != NULL)
 		{

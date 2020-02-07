@@ -6,7 +6,6 @@
 #include <string>
 using namespace std;
 #include "Dictionary.h"
-#include"List.h"
 
 //Methods
 void displayMenu();
@@ -16,7 +15,9 @@ int main() {
 	//Startup
 	Dictionary stationCodes;
 	Dictionary stationNames;
+	Dictionary routes;
 
+	//Station Excel File
 	ifstream infile("Stations.csv");
 	string line;
 	string station_code, station;
@@ -31,7 +32,7 @@ int main() {
 			if(i ==1){
 				station = token;
 				stationNames.add(station, station_code);
-				stationCodes.add(station_code.substr(0,2), station_code+", "+station);
+				stationCodes.add(station_code,station+" (" +station_code+") " );
 				
 			}
 			line.erase(0, pos + 1);
