@@ -79,6 +79,8 @@ bool Dictionary::add(KeyType newKey, ItemType newItem)
 	return true;
 }
 
+
+
 void Dictionary::remove(KeyType key)
 {
 	Node* newNode = items[hash(key)];
@@ -118,6 +120,20 @@ ItemType Dictionary::get(KeyType key)
 	}
 }
 
+string Dictionary::getline(KeyType key)
+{
+	string stations;
+	Node* tempNode = items[hash(key)];
+	while (tempNode != NULL)
+	{
+
+		stations += tempNode->item;
+		tempNode = tempNode->next;
+
+	}
+	return stations;
+}
+
 bool Dictionary::isEmpty()
 {
 	if (size == 0)
@@ -133,7 +149,7 @@ int Dictionary::getLength() {
 	return size;
 }
 
-void Dictionary::print()
+void Dictionary::printCodes()
 {
 	Node* tempNode = new Node;
 	for (int i = 0; i < MAX_SIZE; i++)
@@ -145,9 +161,30 @@ void Dictionary::print()
 			tempNode = items[i];
 			while (tempNode != NULL)
 			{
-				cout << tempNode->item << "        " << tempNode->key << endl;
-				tempNode = tempNode->next;
+				cout << tempNode->key << "        " << endl;
+				break;
+			}
+		}
 
+		
+	}
+}
+
+void Dictionary::print()
+{
+	Node* tempNode = new Node;
+	for (int i = 0; i < MAX_SIZE; i++)
+	{
+		
+		if (items[i] != NULL)
+		{
+
+			tempNode = items[i];
+			while(tempNode != NULL)
+			{
+				cout << tempNode->item << "        " << tempNode->key<< endl;
+				tempNode = tempNode->next;
+				
 			}
 		}
 	}

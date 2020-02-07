@@ -40,6 +40,9 @@ public:
 	// get an item with the specified key in the Dictionary (retrieve)
 	ItemType get(KeyType key);
 
+	// get an item with the specified key in the Dictionary (retrieve)
+	ItemType getline(KeyType key);
+
 	// check if the Dictionary is empty
 	bool isEmpty();
 
@@ -49,4 +52,7 @@ public:
 	//------------------- Other useful functions -----------------
 	// display the items in the Dictionary
 	void print();
+
+	// displays the keys in the Dictionary, in this case the station codes
+	void printCodes();
 };
