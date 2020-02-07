@@ -6,16 +6,16 @@
 #include <string>
 using namespace std;
 #include "Dictionary.h"
-#include "List.h"
 
 //Methods
 void displayMenu();
 
 int main() {
-	//Import 
+
+	//Startup
 	Dictionary stationCodes;
 	Dictionary stationNames;
-	List stationList;
+
 	ifstream infile("Stations.csv");
 	string line;
 	string station_code, station;
@@ -30,11 +30,14 @@ int main() {
 			if(i ==1){
 				station = token;
 				stationNames.add(station, station_code);
-				stationCodes.add(station_code, station);
+				stationCodes.add(station_code.substr(0,2), station_code+", "+station);
+				
 			}
 			line.erase(0, pos + 1);
 		}
 	}
+	
+	//////////////////////////////////////////////////////////////////////////
 
 	int choice = 1;
 	while (true) {
@@ -42,7 +45,13 @@ int main() {
 		cin >> choice;
 
 		if (choice == 1) {
-			stationCodes.print();
+			stationCodes.printCodes();
+			cout << "Please enter the train line you would like to display: ";
+			string input;
+			cin >> input;
+			string output;
+			cout << "The stations for " << input << "are: " << stationCodes.getline(input);
+
 			continue;
 		}
 		// Display station information for a given station name
@@ -55,23 +64,37 @@ int main() {
 		}
 
 		if (choice == 3) {
-			cout << "Please enter station name that you would like to add" << endl;
+			stationNames.print();
+			cout << "Please enter station name that you would like to add: ";
 			string name;
 			cin >> name;
-			//string
-			//stations.add(input);
+			cout << "Please enter the station code: ";
+			string code;
+			cin >> code;
+			stationNames.add(code, name);
+			stationNames.print();
+			continue;
 
 		}
 
 		// Find and display a route and its price, given the source and destination stations
 		if (choice == 4) {
-			cout << "Please enter source station name" << endl;
+			cout << "Please enter source station code: ";
 			string source;
 			cin >> source;
-			cout << "Please enter destination station name" << endl;
+			cout << "Please enter destination station code: ";
 			string dest;
 			cin >> dest;
+			string line = source.substr(0, 2);
+			
 
+			/*
+				1. get station line
+				2. find interchanges in line
+				3. for each interchange in line, jump to next line
+				4. if line == dest line, add route to list
+				5. calculate price
+			*/
 		}
 
 		if (choice == 0) {
