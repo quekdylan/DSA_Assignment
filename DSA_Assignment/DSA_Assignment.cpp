@@ -6,6 +6,7 @@
 #include <string>
 using namespace std;
 #include "Dictionary.h"
+#include"List.h"
 
 //Methods
 void displayMenu();
