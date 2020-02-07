@@ -33,10 +33,14 @@ int Dictionary::hash(KeyType key)
 
 	for (char& c : key)
 	{
-		keyValue += charvalue(c);
+		if (isalpha(c))
+		{
+			keyValue += charvalue(c);
+		}
 	}
 
 	return(keyValue % MAX_SIZE);
+
 }
 
 bool Dictionary::add(KeyType newKey, ItemType newItem)
@@ -55,10 +59,7 @@ bool Dictionary::add(KeyType newKey, ItemType newItem)
 	else {
 
 		Node* tempNode = items[hash(newKey)];
-		if (tempNode->key == newKey)
-		{
-			return false;
-		}
+
 
 		while (tempNode->next != NULL)
 		{
@@ -166,7 +167,7 @@ void Dictionary::printCodes()
 			}
 		}
 
-		
+
 	}
 }
 
@@ -175,21 +176,17 @@ void Dictionary::print()
 	Node* tempNode = new Node;
 	for (int i = 0; i < MAX_SIZE; i++)
 	{
-		
+
 		if (items[i] != NULL)
 		{
 
 			tempNode = items[i];
-			while(tempNode != NULL)
+			while (tempNode != NULL)
 			{
-				cout << tempNode->item << "        " << tempNode->key<< endl;
+				cout << tempNode->item << "        " << tempNode->key << endl;
 				tempNode = tempNode->next;
-				
+
 			}
 		}
 	}
 }
-
-
-
-

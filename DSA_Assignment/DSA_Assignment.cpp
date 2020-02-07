@@ -17,18 +17,19 @@ int main() {
 	Dictionary stationNames;
 	StationDictionary stations;
 
+	//Station Excel File
 	ifstream infile("Stations.csv");
-	string line, station_code, station, distance;
-
-	while (getline(infile, line)){
+	string line;
+	string station_code, station;
+	while (getline(infile, line)) {
 		char delimiter = ',';
-		for (int i = 0; i < 2; i++){
+		for (int i = 0; i < 2; i++) {
 			size_t pos = line.find(delimiter);
 			string token = line.substr(0, pos);
-			if(i == 0){
+			if (i == 0) {
 				station_code = token;
 			}
-			if(i ==1){
+			if (i == 1) {
 				station = token;
 				stationNames.add(station, station_code);
 				stationCodes.add(station_code, station + " (" + station_code + ") ");
