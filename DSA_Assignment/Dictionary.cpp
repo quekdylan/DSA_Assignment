@@ -167,7 +167,7 @@ void Dictionary::printCodes()
 			}
 		}
 
-		
+
 	}
 }
 
@@ -176,21 +176,17 @@ void Dictionary::print()
 	Node* tempNode = new Node;
 	for (int i = 0; i < MAX_SIZE; i++)
 	{
-		
+
 		if (items[i] != NULL)
 		{
 
 			tempNode = items[i];
-			while(tempNode != NULL)
+			while (tempNode != NULL)
 			{
-				cout << tempNode->item << "        " << tempNode->key<< endl;
+				cout << tempNode->item << "        " << tempNode->key << endl;
 				tempNode = tempNode->next;
-				
+
 			}
 		}
 	}
 }
-
-
-
-

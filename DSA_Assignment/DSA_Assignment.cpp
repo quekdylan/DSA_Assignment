@@ -6,7 +6,7 @@
 #include <string>
 using namespace std;
 #include "Dictionary.h"
-
+#include "StationDictionary.h"
 //Methods
 void displayMenu();
 
@@ -15,27 +15,51 @@ int main() {
 	//Startup
 	Dictionary stationCodes;
 	Dictionary stationNames;
-	Dictionary routes;
+	StationDictionary stations;
 
 	//Station Excel File
 	ifstream infile("Stations.csv");
 	string line;
 	string station_code, station;
-	while (getline(infile, line)){
+	while (getline(infile, line)) {
 		char delimiter = ',';
-		for (int i = 0; i < 2; i++){
+		for (int i = 0; i < 2; i++) {
 			size_t pos = line.find(delimiter);
 			string token = line.substr(0, pos);
-			if(i == 0){
+			if (i == 0) {
 				station_code = token;
 			}
-			if(i ==1){
+			if (i == 1) {
 				station = token;
 				stationNames.add(station, station_code);
-				stationCodes.add(station_code,station+" (" +station_code+") " );
-				
+				stationCodes.add(station_code, station + " (" + station_code + ") ");
 			}
 			line.erase(0, pos + 1);
+		}
+	}
+
+	ifstream infile2("Routes.csv");
+	string prevLine = "none";
+	while (getline(infile2, line)) {
+		if (prevLine == "none") {
+			prevLine = line;
+		}
+		else {
+			char delimiter = ',';
+			while (true) {
+				size_t pos1 = prevLine.find(delimiter);
+				size_t pos2 = line.find(delimiter);
+				string station_code = prevLine.substr(0, pos1);
+				//if last station
+				if (pos1 > 9999) {
+					break;
+				}
+				int distance = stoi(line.substr(0, pos2));
+				stations.addStation(station_code, distance);
+				prevLine.erase(0, pos1 + 1);
+				line.erase(0, pos2 + 1);
+			}
+			prevLine = "none";
 		}
 	}
 	
