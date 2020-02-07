@@ -4,11 +4,13 @@ Line::Line() { size = 0; }
 
 Line::~Line() { }
 
-bool Line::add(int code) {
+bool Line::add(string code, string name) {
 
 	Station* newStation = new Station;
 	newStation->code = code;
+	newStation->name = name;
 	newStation->next = NULL;
+
 
 	if (size == 0) {
 		firstStation = newStation;

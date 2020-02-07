@@ -9,6 +9,7 @@ private:
 	struct Station
 	{
 		string code;
+		string name;
 		Station* next;
 		Station* previous;
 		int distance;
@@ -17,11 +18,13 @@ private:
 		Station* interchangeStation2;
 	};
 
+	Line* next;
+	string code;
 	Station* firstStation;	// point to the first item
 	int size;			// number of items in the list
 
 public:
-	Line();			// constructor
+	Line(){};			// constructor
 
 	~Line();		// distructor
 
@@ -29,7 +32,7 @@ public:
 	// pre : size < MAX_SIZE
 	// post: item is added to the back of the list
 	//       size of list is increased by 1
-	bool add(int code);
+	bool add(string code, string name);
 
 	// get an item at a specified position of the list (retrieve)
 	// pre : 0 <= index < size
