@@ -9,18 +9,21 @@ StationDictionary::StationDictionary() {}
 StationDictionary::~StationDictionary() {}
 
 
-void StationDictionary:: addStation(string code, int distance)
+void StationDictionary:: addStation(string name, string code, int distance)
 {
 	string lineCode = code.substr(0, 2);
 	Station* station = new Station();
+	station->name = name;
 	station->code = code;
 	station->distance = distance;
 	//station->interchangeStation1 = interchangeStation1;
 	//station->interchangeStation2 = interchangeStation2;
 	station->next = NULL;
 
+
+
 	// if dictionary is empty
-	if (stations == NULL)
+	if (firstLine == NULL)
 	{
 		Line* line = new Line();
 		line->code = lineCode;
@@ -41,6 +44,7 @@ void StationDictionary:: addStation(string code, int distance)
 					tempStation = tempStation->next;
 				}
 				tempStation->next = station;
+				break;
 			}
 			// if line not found
 			else if (tempLine->next == NULL) {
@@ -48,14 +52,18 @@ void StationDictionary:: addStation(string code, int distance)
 				line->code = lineCode;
 				line->next = NULL;
 				line->firstStation = station;
-				cout << lineCode;
+				tempLine->next = line;
+				break;
 			}
-			else {
-				tempLine->next;
-			}
+			tempLine = tempLine->next;
+
 		}
 
 	}
+
+}
+void StationDictionary::addInterchange(Station* station, string int1, string int2) {
+
 }
 
 

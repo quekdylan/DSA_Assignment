@@ -37,7 +37,6 @@ int main() {
 			line.erase(0, pos + 1);
 		}
 	}
-
 	ifstream infile2("Routes.csv");
 	string prevLine = "none";
 	while (getline(infile2, line)) {
@@ -50,12 +49,47 @@ int main() {
 				size_t pos1 = prevLine.find(delimiter);
 				size_t pos2 = line.find(delimiter);
 				string station_code = prevLine.substr(0, pos1);
+				string station = stationCodes.get(station_code);
+				
+				//Interchange
+				ifstream infile3("Interchanges.csv");
+				string interchange1, interchange2, line2;
+				string int1, int2, int3 = "";
+				while (getline(infile3, line2)) {
+					size_t pos3 = line2.find(delimiter);
+					int1 = line2.substr(0, pos3);
+					line2.erase(0, pos3 + 1);
+					pos3 = line2.find(delimiter);
+					int2 = line2.substr(0, pos3);
+					line2.erase(0, pos3 + 1); 
+					if (pos3 < 9999) {
+						pos3 = line2.find(delimiter);
+						int3 = line2.substr(0, pos3);
+					}
+					if (station_code == int1) {
+						interchange1 = int2;
+						interchange2 = int3;
+						break;
+					}
+					if (station_code == int2) {
+						interchange1 = int1;
+						interchange2 = int3;
+						break;
+					}
+					if (station_code == int3) {
+						interchange1 = int1;
+						interchange2 = int2;
+						break;
+					}
+				}
+				//cout << station << interchange1 << interchange2 << endl;
 				//if last station
 				if (pos1 > 9999) {
+					stations.addStation(station, station_code, NULL);
 					break;
 				}
 				int distance = stoi(line.substr(0, pos2));
-				stations.addStation(station_code, distance);
+				stations.addStation(station, station_code, distance);
 				prevLine.erase(0, pos1 + 1);
 				line.erase(0, pos2 + 1);
 			}
