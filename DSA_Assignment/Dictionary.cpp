@@ -60,6 +60,10 @@ bool Dictionary::add(KeyType newKey, ItemType newItem)
 
 		Node* tempNode = items[hash(newKey)];
 
+		if (tempNode->key == newKey)
+		{
+			return false;
+		}
 
 		while (tempNode->next != NULL)
 		{
@@ -129,6 +133,7 @@ string Dictionary::getline(KeyType key)
 	{
 
 		stations += tempNode->item;
+		stations += "(" + tempNode->key + ") " + "\n";
 		tempNode = tempNode->next;
 
 	}
