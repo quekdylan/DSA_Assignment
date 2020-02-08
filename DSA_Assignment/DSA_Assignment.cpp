@@ -32,7 +32,7 @@ int main() {
 			if (i == 1) {
 				station = token;
 				stationNames.add(station, station_code);
-				stationCodes.add(station_code, station + " (" + station_code + ") ");
+				stationCodes.add(station_code, station);
 			}
 			line.erase(0, pos + 1);
 		}
@@ -76,7 +76,7 @@ int main() {
 			string input;
 			cin >> input;
 			string output;
-			cout << "The stations for " << input << "are: " << stationCodes.getline(input);
+			cout << "The stations for " << input << " are: \n" << stationCodes.getline(input);
 
 			continue;
 		}
@@ -90,15 +90,24 @@ int main() {
 		}
 
 		if (choice == 3) {
-			stationNames.print();
+			stationCodes.print();
 			cout << "Please enter station name that you would like to add: ";
 			string name;
 			cin >> name;
 			cout << "Please enter the station code: ";
 			string code;
 			cin >> code;
-			stationNames.add(code, name);
-			stationNames.print();
+			cout << "Please enter the distance";
+			string distance;
+			cin >> distance;
+
+			if ((stationCodes.add(code, name)) == false){
+				cout << "Station code is already in the data base, please try again" << endl;
+			}
+			else {
+				cout << "Station has been successfully added" << endl;
+			}
+			stationCodes.print();
 			continue;
 
 		}
