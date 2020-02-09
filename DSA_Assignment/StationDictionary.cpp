@@ -1,5 +1,6 @@
 #include<string>
 #include<iostream>
+#include <sstream>
 using namespace std;
 
 #include "StationDictionary.h"
@@ -9,7 +10,7 @@ StationDictionary::StationDictionary() {}
 StationDictionary::~StationDictionary() {}
 
 
-void StationDictionary:: addStation(string name, string code, int distance)
+void StationDictionary::addStation(string name, string code, int distance)
 {
 	string lineCode = code.substr(0, 2);
 	Station* station = new Station();
@@ -31,7 +32,7 @@ void StationDictionary:: addStation(string name, string code, int distance)
 		line->firstStation = station;
 		firstLine = line;
 	}
-	
+
 	else {
 		Line* tempLine = new Line;
 		tempLine = firstLine;
@@ -62,10 +63,3 @@ void StationDictionary:: addStation(string name, string code, int distance)
 	}
 
 }
-void StationDictionary::addInterchange(Station* station, string int1, string int2) {
-
-}
-
-
-
-

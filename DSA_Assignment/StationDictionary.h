@@ -41,6 +41,6 @@ public:
 	// add a new item with the specified key to the Dictionary
 	void addStation(string name, string code, int distance);
 
-	void addInterchange(Station* station, string int1, string int2);
+	void addInterchanges(string file);
 
 };
