@@ -1,5 +1,5 @@
+// Done by Dylan (S10186935) and Dong Han (S10189943)
 #pragma once
-// Dictionary.h - - Specification of Dictionary ADT
 
 #include<string>
 #include<iostream>

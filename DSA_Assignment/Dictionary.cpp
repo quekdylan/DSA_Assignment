@@ -1,3 +1,5 @@
+// Done by Dylan (S10186935) and Dong Han (S10189943)
+
 #include<string>
 #include<iostream>
 using namespace std;
@@ -123,6 +125,7 @@ ItemType Dictionary::get(KeyType key)
 		tempNode = tempNode->next;
 
 	}
+	return "";
 }
 
 string Dictionary::getline(KeyType key)
@@ -178,6 +181,7 @@ void Dictionary::printCodes()
 
 void Dictionary::print()
 {
+	string output;
 	Node* tempNode = new Node;
 	for (int i = 0; i < MAX_SIZE; i++)
 	{
@@ -188,7 +192,7 @@ void Dictionary::print()
 			tempNode = items[i];
 			while (tempNode != NULL)
 			{
-				cout << tempNode->item << "        " << tempNode->key << endl;
+				cout << tempNode->item << ", " << tempNode->key << "\n";
 				tempNode = tempNode->next;
 
 			}
